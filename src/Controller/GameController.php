@@ -9,25 +9,41 @@
 namespace App\Controller;
 
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class GameController extends AbstractController
 {
 
+
+
+
     /**
      * @Route("/")
      */
     public function defaultPage(){
-        return $this->render('gamePages/defaultPage.html.twig');
+        $gameList = array(
+            1001 => "Game 1",
+            1002 => "Game 2",
+            1003 => "Game 3",
+        );
+        return $this->render('gamePages/defaultPage.html.twig', [
+            'gameList' => $gameList,
+        ]);
+
+
     }
 
     /**
      * @Route("/play-page")
      */
-    public function playPage() {
-
-        return $this->render('gamePages/playPage.html.twig');
+    public function playPage(Request $request) {
+        $data = $request->request->get('gameSelected');
+        return $this->render('gamePages/playPage.html.twig', [
+            'gameSelected' => $data,
+        ]);
     }
 
     /**

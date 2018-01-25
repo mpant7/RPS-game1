@@ -3,10 +3,37 @@
 {% block body %}
 
 <h2>DEFAULT PAGE</h2>
-    <table >
+    {#<table >#}
+        {#<tr>#}
+            {#<td>Rock, Paper, Scissor</td>#}
+            {#<td><button onclick="location.href='/play-page'">Play</button></td>#}
+            {#<td><button onclick="location.href='/watch-page'">Watch</button></td>#}
+        {#</tr>#}
+    {#</table>#}
+
+    <table>
+        <tr>
+            <td rowspan="2"><img src="../images/rps-image.png" alt="RPS Image Not Loaded"></td>
+            <td><input type="text" placeholder="Enter the name of game" name="game-name"> <button onclick="location.href='/play-page'">Start</button></td>
+        </tr>
+        <tr>
+            <td>
+                <form action="{{ path('app_game_playpage') }}" method="post">
+                    <select id="gameSelected" name="gameSelected">
+                        {% for key,value in gameList %}
+                            <option value="{{ key }}">{{ value }}</option>
+                        {% endfor %}
+
+                    </select>
+
+                    {#<button type="submit" >Play</button>#}
+                    <input name="Play" type="submit" >
+                </form>
+                {#<button type="submit" onclick="location.href='/play-page'">Play</button>#}
+            </td>
+        </tr>
         <tr>
             <td>Rock, Paper, Scissor</td>
-            <td><button onclick="location.href='/play-page'">Play</button></td>
             <td><button onclick="location.href='/watch-page'">Watch</button></td>
         </tr>
     </table>
