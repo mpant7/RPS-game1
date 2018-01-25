@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h2>RESULT PAGE</h2>
+
+    <table border="2">
+        <tr>
+            <td>Your Pick: {{ userPick }}</td>
+            <td>Computer's Pick: {{ computerPick }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">Result: {{ gameResult }}</td>
+        </tr>
+    </table>
+
+    <button onclick="location.href='/play-page'" >Try Again</button>
+
+{% endblock %}
