@@ -8,8 +8,8 @@
 
 namespace App\Controller;
 
-
-
+use App\Entity\Games;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,17 +17,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class GameController extends AbstractController
 {
 
-
-
-
     /**
      * @Route("/")
      */
-    public function defaultPage(){
+    public function defaultPage(EntityManagerInterface $em){
+
+        $game = new Games();
+        $game->setId(1001);
+        $game->setName('Manish Game');
+        $game->setScore(10);
+        $game->setTime(getdate());
+        $game->setStatus(0);
+        $em->persist($game);
+        $em->flush();
         $gameList = array(
-            1001 => "Game 1",
-            1002 => "Game 2",
-            1003 => "Game 3",
+            $game->getId() => $game->getName(),
+//            1001 => "Game 1",
+//            1002 => "Game 2",
+//            1003 => "Game 3",
         );
         return $this->render('gamePages/defaultPage.html.twig', [
             'gameList' => $gameList,
