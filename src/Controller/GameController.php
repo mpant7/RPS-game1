@@ -26,7 +26,7 @@ class GameController extends AbstractController
         $game->setId(1001);
         $game->setName('Manish Game');
         $game->setScore(10);
-        $game->setTime(getdate());
+        //$game->setTime(0);
         $game->setStatus(0);
         $em->persist($game);
         $em->flush();
